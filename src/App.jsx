@@ -6,8 +6,16 @@ import Home from "./routes/Home"
 import Login from "./routes/Login"
 import Register from "./routes/Register"
 import RequireAuth from "./components/RequiereAuth"
+import { UserContext } from "./context/UserProvider"
+import { useContext } from "react"
 
 const App = () => {
+
+  const {user} = useContext(UserContext)
+
+  if(user === false) {
+    return <p>Loading User</p>
+  }
 
   return (
     <>

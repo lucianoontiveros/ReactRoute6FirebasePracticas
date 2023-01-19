@@ -1,12 +1,15 @@
 import { useContext } from "react"
-import  {Navigate, NavLink} from "react-router-dom"
+import  {NavLink} from "react-router-dom"
 import { UserContext } from "../context/UserProvider"
 const Navbar = () => {
-    const { user, setUser} = useContext(UserContext)
+    const { user, singOutUser } = useContext(UserContext)
 
-    const cambiarEstado = () => {
-        setUser(false)
-        return <Navigate to="/login" /> 
+    const cambiarEstado = async () => {
+        try {
+            await singOutUser();
+        } catch (error) {
+            console.log(error.code)
+        }
     }
 
     return(
